@@ -49,6 +49,12 @@ def parse_input(user_input):
 
     return (user_num, command, cards)
 
+def initialise_card_locations(num_cards):
+    card_locations = {}
+    for i in xrange(num_cards):
+        card_locations[i] = None
+
+    return card_locations
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
