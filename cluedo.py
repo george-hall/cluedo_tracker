@@ -41,6 +41,13 @@ def player_def_has_card(probs_dict, player_num, card_num):
     return probs_dict
 
 
+def convert_input_to_list(user_input):
+    as_list = user_input.strip().split()
+    user_num = int(as_list[0])
+    command = as_list[1]
+    cards = [int(x) for x in as_list[2:]]
+
+    return (user_num, command, cards)
 
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
