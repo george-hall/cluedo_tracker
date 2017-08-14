@@ -1,10 +1,8 @@
 from __future__ import division
 
 
-def print_probs(probs_dict, num_players, SUSPECTS, ROOMS, WEAPONS):
-    top_str = " ".join(x[:5] for x in SUSPECTS) + " " +\
-              " ".join(x[:5] for x in ROOMS) + " " + \
-              " ".join(x[:5] for x in WEAPONS)
+def print_probs(probs_dict, num_players, card_enum):
+    top_str = " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
 
     print "  " + top_str
     for i in xrange(num_players + 1):
