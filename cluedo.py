@@ -24,6 +24,10 @@ def create_probs_dict(num_players):
     return probs_dict
 
 
+def create_card_enum(SUSPECTS, ROOMS, WEAPONS):
+    return enumerate(SUSPECTS + ROOMS + WEAPONS)
+
+
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
