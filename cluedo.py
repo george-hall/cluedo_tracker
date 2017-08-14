@@ -41,7 +41,7 @@ def player_def_has_card(probs_dict, player_num, card_num):
     return probs_dict
 
 
-def convert_input_to_list(user_input):
+def parse_input(user_input):
     as_list = user_input.strip().split()
     user_num = int(as_list[0])
     command = as_list[1]
