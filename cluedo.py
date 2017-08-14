@@ -24,6 +24,13 @@ def create_card_enum(SUSPECTS, ROOMS, WEAPONS):
     return enumerate(SUSPECTS + ROOMS + WEAPONS)
 
 
+def error_check_cards_list(user_cards_list):
+    for num in user_cards_list:
+        if not (0 <= num <= 20):
+            print "ERROR: All number must be between 0 and 20"
+            sys.exit(1)
+
+
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
