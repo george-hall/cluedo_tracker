@@ -49,6 +49,17 @@ def parse_input(user_input):
 
     return (user_num, command, cards)
 
+
+def add_to_card_locations(card_locations, user_num, card):
+    if card_locations[card] is not None:
+        print "ERROR: Card location already known"
+
+    else:
+        card_locations[card] = user_num
+
+    return card_locations
+
+
 def initialise_card_locations(num_cards):
     card_locations = {}
     for i in xrange(num_cards):
