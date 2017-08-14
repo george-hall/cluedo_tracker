@@ -31,6 +31,17 @@ def error_check_cards_list(user_cards_list):
             sys.exit(1)
 
 
+def player_def_has_card(probs_dict, player_num, card_num):
+    for p in probs_dict.keys():
+        if p == player_num:
+            probs_dict[p][card_num] = 1
+        else:
+            probs_dict[p][card_num] = 0
+
+    return probs_dict
+
+
+
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
