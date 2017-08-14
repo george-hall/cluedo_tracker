@@ -15,9 +15,9 @@ def create_probs_dict(num_players):
     probs_dict = {}
 
     for i in xrange(num_players + 1):
-        probs_dict[i] = [[1/len(SUSPECTS) for x in SUSPECTS],
-                         [1/len(ROOMS) for x in ROOMS],
-                         [1/len(WEAPONS) for x in WEAPONS]]
+        probs_dict[i] = [1/len(SUSPECTS) for x in SUSPECTS] + \
+                        [1/len(ROOMS) for x in ROOMS] + \
+                        [1/len(WEAPONS) for x in WEAPONS]
 
     return probs_dict
 
