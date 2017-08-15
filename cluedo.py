@@ -17,6 +17,24 @@ def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_
 
         print str(i) + " " + out_str
 
+    # print recreating input
+    for i in xrange(num_players):
+        if deffo_have_dict[i]:
+            out_str = str(i) + " d "
+            for card in deffo_have_dict[i]:
+                out_str += str(card) + " "
+            print out_str
+        if maybe_have_dict[i]:
+            out_str = str(i) + " m "
+            for card in maybe_have_dict[i]:
+                out_str += str(card) + " "
+            print out_str
+        if dont_have_dict[i]:
+            out_str = str(i) + " n "
+            for card in dont_have_dict[i]:
+                out_str += str(card) + " "
+            print out_str
+
 
 def create_card_enum(SUSPECTS, ROOMS, WEAPONS):
     return list(enumerate(SUSPECTS + ROOMS + WEAPONS))
