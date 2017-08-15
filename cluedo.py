@@ -1,6 +1,3 @@
-from __future__ import division
-
-
 def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_dict, dont_have_dict):
     print "  " + " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
     for i in xrange(num_players):
