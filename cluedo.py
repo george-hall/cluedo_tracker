@@ -174,7 +174,7 @@ dont_have_dict = initialise_dont_have_dict(num_players)
 print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
 
 while True:
-    user_input = raw_input("[PLAYER] [d,m,n] [CARD(S)])   > ")
+    user_input = raw_input("\n > ")
     deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
 
     print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
