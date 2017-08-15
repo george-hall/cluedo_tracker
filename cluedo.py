@@ -16,7 +16,7 @@ def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_
 
 
 def create_card_enum(SUSPECTS, ROOMS, WEAPONS):
-    return enumerate(SUSPECTS + ROOMS + WEAPONS)
+    return list(enumerate(SUSPECTS + ROOMS + WEAPONS))
 
 
 def valid_user_input(user_input, num_players):
