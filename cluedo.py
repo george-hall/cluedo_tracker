@@ -66,6 +66,13 @@ def initialise_card_locations(num_cards):
         card_locations[i] = None
 
     return card_locations
+
+
+def remove_from_maybe_dicts(card, num_players, maybe_have_dict):
+    for i in xrange(num_players):
+        if card in maybe_have_dict[i]:
+            maybe_have_dict[i].remove(card)
+
 def initialise_deffo_have_dict(num_players):
     deffo_have_dict = {}
     for i in xrange(num_players):
