@@ -18,14 +18,6 @@ def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_
         print str(i) + " " + out_str
 
 
-def print_probs(probs_dict, num_players, card_enum):
-    top_str = " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
-
-    print "  " + top_str
-    for i in xrange(num_players + 1):
-        print str(i) + " " + " ".join((str(x)[2:7] if x not in [0,1] else ('!!!!!' if x == 1 else '00000')) for x in probs_dict[i])
-
-
 def create_card_enum(SUSPECTS, ROOMS, WEAPONS):
     return enumerate(SUSPECTS + ROOMS + WEAPONS)
 
