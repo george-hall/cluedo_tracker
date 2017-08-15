@@ -141,8 +141,26 @@ SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
 WEAPONS = ["Candlestick", "Dagger", "Piper ", "Revolver", "Rope  ", "Spanner"]
+total_num_cards = len(SUSPECTS) + len(ROOMS) + len(WEAPONS)
 
 num_players = input("Enter number of players: ")
 
-probs_dict = create_probs_dict(num_players)
-print_probs(probs_dict, num_players, SUSPECTS, ROOMS, WEAPONS)
+card_enum = create_card_enum(SUSPECTS, ROOMS, WEAPONS)
+
+card_locations = initialise_card_locations(total_num_cards)
+
+deffo_have_dict = initialise_deffo_have_dict(num_players)
+maybe_have_dict = initialise_maybe_have_dict(num_players)
+dont_have_dict = initialise_dont_have_dict(num_players)
+
+print "DEFFO:", deffo_have_dict
+print "MAYBE:", maybe_have_dict
+print "DON'T:", dont_have_dict
+
+while True:
+    user_input = raw_input("Next (e.g. 2 d 4 or 3 m 5 16): ")
+    deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
+
+    print "DEFFO:", deffo_have_dict
+    print "MAYBE:", maybe_have_dict
+    print "DON'T:", dont_have_dict
