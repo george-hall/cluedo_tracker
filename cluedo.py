@@ -19,11 +19,38 @@ def create_card_enum(SUSPECTS, ROOMS, WEAPONS):
     return enumerate(SUSPECTS + ROOMS + WEAPONS)
 
 
-def error_check_cards_list(user_cards_list):
-    for num in user_cards_list:
-        if not (0 <= num <= 20):
-            print "ERROR: All number must be between 0 and 20"
-            sys.exit(1)
+def valid_user_input(user_input, num_players):
+    splat = user_input.strip().split()
+
+    if len(splat) < 3:
+        print "ERROR: Input too short"
+        return False
+
+    if not splat[0].isdigit():
+        print "ERROR: First symbol must be player number"
+        return False
+
+    if splat[1] not in ["d", "m", "n"]:
+        print "ERROR: Second symbol must be either d, m, or n"
+        return False
+
+    if not all(x.isdigit() for x in splat[2:]):
+        print "ERROR: Remaining symbols must be card numbers"
+        return False
+
+    (user_num, command, cards) = parse_input(user_input)
+
+    for card in cards:
+        if not (0 <= card <= 20):
+            print "ERROR: All card numbers must be between 0 and 20"
+            return False
+
+    if not 0 <= user_num <= (num_players - 1):
+        print "ERROR: Player number invalid"
+        return False
+
+
+    return True
 
 
 def parse_input(user_input):
@@ -60,8 +87,10 @@ def remove_from_maybe_dicts(card, num_players, maybe_have_dict):
 
 
 def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict):
+    if not valid_user_input(user_input, num_players):
+        return
+
     (user_num, user_command, cards) = parse_input(user_input)
-    # error_check_cards_list(user_input_list)
 
     if user_command == "d":
         # 'Definitely'
