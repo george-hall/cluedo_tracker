@@ -1,6 +1,23 @@
 from __future__ import division
 
 
+def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_dict, dont_have_dict):
+    print "  " + " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
+    for i in xrange(num_players):
+        out_str = ""
+        for x in xrange(num_cards):
+            if x in deffo_have_dict[i]:
+                out_str += "  D   "
+            elif x in maybe_have_dict[i]:
+                out_str += "  M   "
+            elif x in dont_have_dict[i]:
+                out_str += "  N   "
+            else:
+                out_str += "  ?   "
+
+        print str(i) + " " + out_str
+
+
 def print_probs(probs_dict, num_players, card_enum):
     top_str = " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
 
