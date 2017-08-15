@@ -66,6 +66,30 @@ def initialise_card_locations(num_cards):
         card_locations[i] = None
 
     return card_locations
+def initialise_deffo_have_dict(num_players):
+    deffo_have_dict = {}
+    for i in xrange(num_players):
+        deffo_have_dict[i] = []
+
+    return deffo_have_dict
+
+
+def initialise_maybe_have_dict(num_players):
+    maybe_have_dict = {}
+    for i in xrange(num_players):
+        maybe_have_dict[i] = []
+
+    return maybe_have_dict
+
+
+def initialise_dont_have_dict(num_players):
+    dont_have_dict = {}
+    for i in xrange(num_players):
+        dont_have_dict[i] = []
+
+    return dont_have_dict
+
+
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
