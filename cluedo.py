@@ -61,6 +61,10 @@ def valid_user_input(user_input, num_players):
 
     (user_num, command, cards) = parse_input(user_input)
 
+    if command in ['m', 'n'] and len(cards) != 3:
+        print "ERROR: Must have three cards"
+        return False
+
     for card in cards:
         if not (0 <= card <= 20):
             print "ERROR: All card numbers must be between 0 and 20"
