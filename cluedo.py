@@ -183,7 +183,10 @@ print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have
 signal.signal(signal.SIGINT, ignore_sigint)
 
 while True:
-    user_input = raw_input("\n > ")
-    deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
+    try:
+        user_input = raw_input("\n > ")
+        deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
 
-    print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
+        print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
+    except EOFError:
+        pass
