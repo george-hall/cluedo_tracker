@@ -73,6 +73,46 @@ def remove_from_maybe_dicts(card, num_players, maybe_have_dict):
         if card in maybe_have_dict[i]:
             maybe_have_dict[i].remove(card)
 
+
+def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict):
+    (user_num, user_command, cards) = parse_input(user_input)
+    # error_check_cards_list(user_input_list)
+
+    if user_command == "d":
+        # 'Definitely'
+        for card in cards:
+            if card not in deffo_have_dict[user_num]:
+                deffo_have_dict[user_num].append(card)
+                card_locations[card] = user_num
+                remove_from_maybe_dicts(card, num_players, maybe_have_dict)
+
+    elif user_command == "m":
+        # 'Maybe'
+        for card in cards:
+            if card_locations[card] is not None:
+                continue
+            if card in maybe_have_dict[user_num]:
+                continue
+            if card in dont_have_dict[user_num]:
+                continue
+
+            if card not in maybe_have_dict[user_num]:
+                maybe_have_dict[user_num].append(card)
+
+    elif user_command == "n":
+        # 'Not'
+        for card in cards:
+            if card in maybe_have_dict[user_num]:
+                maybe_have_dict.remove(card)
+
+            if card not in dont_have_dict[user_num]:
+                dont_have_dict[user_num].append(card)
+
+    else:
+        print "ERROR: Invalid command"
+        sys.exit(1)
+
+
 def initialise_deffo_have_dict(num_players):
     deffo_have_dict = {}
     for i in xrange(num_players):
