@@ -1,3 +1,6 @@
+import sys
+import signal
+
 def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_dict, dont_have_dict):
     print "  " + " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
     for i in xrange(num_players):
@@ -155,6 +158,10 @@ def initialise_dont_have_dict(num_players):
     return dont_have_dict
 
 
+def ignore_sigint(signal, frame):
+    pass
+
+
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
@@ -172,6 +179,8 @@ maybe_have_dict = initialise_maybe_have_dict(num_players)
 dont_have_dict = initialise_dont_have_dict(num_players)
 
 print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
+
+signal.signal(signal.SIGINT, ignore_sigint)
 
 while True:
     user_input = raw_input("\n > ")
