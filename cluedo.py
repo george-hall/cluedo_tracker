@@ -138,14 +138,10 @@ deffo_have_dict = initialise_deffo_have_dict(num_players)
 maybe_have_dict = initialise_maybe_have_dict(num_players)
 dont_have_dict = initialise_dont_have_dict(num_players)
 
-print "DEFFO:", deffo_have_dict
-print "MAYBE:", maybe_have_dict
-print "DON'T:", dont_have_dict
+print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
 
 while True:
     user_input = raw_input("Next (e.g. 2 d 4 or 3 m 5 16): ")
     deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
 
-    print "DEFFO:", deffo_have_dict
-    print "MAYBE:", maybe_have_dict
-    print "DON'T:", dont_have_dict
+    print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
