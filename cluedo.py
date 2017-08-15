@@ -111,6 +111,18 @@ def remove_from_maybe_dicts(card, num_players, maybe_have_dict):
             maybe_have_dict[i].remove(card)
 
 
+def add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict, maybe_have_dict, dont_have_dict):
+    if card not in deffo_have_dict[user_num]:
+        deffo_have_dict[user_num].append(card)
+        card_locations[card] = user_num
+        remove_from_maybe_dicts(card, num_players, maybe_have_dict)
+        for i in xrange(num_players):
+            if i != user_num:
+                if card not in dont_have_dict[i]:
+                    dont_have_dict[i].append(card)
+
+
+
 def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict):
     if not valid_user_input(user_input, num_players):
         return
