@@ -230,6 +230,8 @@ deffo_have_dict = initialise_deffo_have_dict(num_players)
 maybe_have_dict = initialise_maybe_have_dict(num_players)
 dont_have_dict = initialise_dont_have_dict(num_players)
 
+undo_list = [[copy.deepcopy(card_locations), copy.deepcopy(deffo_have_dict), copy.deepcopy(maybe_have_dict), copy.deepcopy(dont_have_dict)]]
+
 print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
 
 signal.signal(signal.SIGINT, ignore_sigint)
