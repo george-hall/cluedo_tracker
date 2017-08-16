@@ -1,5 +1,6 @@
 import sys
 import signal
+import copy
 
 def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_dict, dont_have_dict):
     print "  " + " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
@@ -123,7 +124,7 @@ def add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict, maybe_have_
 
 
 
-def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict):
+def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict, undo_list):
     if not valid_user_input(user_input, num_players):
         return
 
@@ -170,6 +171,8 @@ def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, ma
     else:
         print "ERROR: Invalid command"
         sys.exit(1)
+
+    undo_list.append([copy.deepcopy(card_locations), copy.deepcopy(deffo_have_dict), copy.deepcopy(maybe_have_dict), copy.deepcopy(dont_have_dict)])
 
 
 def initialise_deffo_have_dict(num_players):
