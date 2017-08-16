@@ -200,6 +200,17 @@ def ignore_sigint(signal, frame):
     pass
 
 
+def revert_state(undo_list, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict):
+    if len(undo_list) > 1:
+        card_locations = undo_list[-2][0]
+        deffo_have_dict = undo_list[-2][1]
+        maybe_have_dict = undo_list[-2][2]
+        dont_have_dict = undo_list[-2][3]
+        undo_list = undo_list[:-1]
+
+    return (undo_list, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
+
+
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
 ROOMS = ["Kitchen", "Ballroom", "Conservatory", "Dining", "Billiard",
          "Library", "Lounge", "Hall  ", "Study "]
