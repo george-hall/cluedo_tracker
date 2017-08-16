@@ -239,7 +239,13 @@ signal.signal(signal.SIGINT, ignore_sigint)
 while True:
     try:
         user_input = raw_input("\n > ")
-        deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
+        if user_input.strip() == "-":
+            (undo_list, card_locations, deffo_have_dict, maybe_have_dict, \
+                dont_have_dict) = revert_state(undo_list, card_locations, \
+                                               deffo_have_dict,           \
+                                               maybe_have_dict, dont_have_dict)
+        else:
+            deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict, undo_list)
 
         print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
     except EOFError:
