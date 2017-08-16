@@ -2,7 +2,8 @@ import sys
 import signal
 import copy
 
-def print_cards(num_players, num_cards, cards_enum, deffo_have_dict, maybe_have_dict, dont_have_dict):
+def print_cards(num_players, num_cards, cards_enum, deffo_have_dict,
+                maybe_have_dict, dont_have_dict):
     print "  " + " ".join(str(x) + y[:5 - (len(str(x)))] for (x,y) in card_enum)
     for i in xrange(num_players):
         out_str = ""
@@ -112,7 +113,8 @@ def remove_from_maybe_dicts(card, num_players, maybe_have_dict):
             maybe_have_dict[i].remove(card)
 
 
-def add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict, maybe_have_dict, dont_have_dict):
+def add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict,
+                       maybe_have_dict, dont_have_dict):
     if card not in deffo_have_dict[user_num]:
         deffo_have_dict[user_num].append(card)
         card_locations[card] = user_num
@@ -124,7 +126,8 @@ def add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict, maybe_have_
 
 
 
-def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict, undo_list):
+def deal_with_input(user_input, num_players, card_locations, deffo_have_dict,
+                    maybe_have_dict, dont_have_dict, undo_list):
     if not valid_user_input(user_input, num_players):
         return
 
@@ -133,7 +136,8 @@ def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, ma
     if user_command == "d":
         # 'Definitely'
         for card in cards:
-            add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict, maybe_have_dict, dont_have_dict)
+            add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict,
+                               maybe_have_dict, dont_have_dict)
 
     elif user_command == "m":
         # 'Maybe'
@@ -146,7 +150,9 @@ def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, ma
         if number_false_maybes == (len(cards) - 1):
             for card in cards:
                 if card not in dont_have_dict[user_num]:
-                    add_to_deffo_dicts(card, user_num, num_players, deffo_have_dict, maybe_have_dict, dont_have_dict)
+                    add_to_deffo_dicts(card, user_num, num_players,
+                                       deffo_have_dict, maybe_have_dict,
+                                       dont_have_dict)
 
         for card in cards:
             if card_locations[card] is not None:
@@ -172,7 +178,10 @@ def deal_with_input(user_input, num_players, card_locations, deffo_have_dict, ma
         print "ERROR: Invalid command"
         sys.exit(1)
 
-    undo_list.append([copy.deepcopy(card_locations), copy.deepcopy(deffo_have_dict), copy.deepcopy(maybe_have_dict), copy.deepcopy(dont_have_dict)])
+    undo_list.append([copy.deepcopy(card_locations),
+                      copy.deepcopy(deffo_have_dict),
+                      copy.deepcopy(maybe_have_dict),
+                      copy.deepcopy(dont_have_dict)])
 
 
 def initialise_deffo_have_dict(num_players):
@@ -203,7 +212,8 @@ def ignore_sigint(signal, frame):
     pass
 
 
-def revert_state(undo_list, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict):
+def revert_state(undo_list, card_locations, deffo_have_dict, maybe_have_dict,
+                 dont_have_dict):
     if len(undo_list) > 1:
         card_locations = undo_list[-2][0]
         deffo_have_dict = undo_list[-2][1]
@@ -211,7 +221,8 @@ def revert_state(undo_list, card_locations, deffo_have_dict, maybe_have_dict, do
         dont_have_dict = undo_list[-2][3]
         undo_list = undo_list[:-1]
 
-    return (undo_list, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict)
+    return (undo_list, card_locations, deffo_have_dict, maybe_have_dict,
+            dont_have_dict)
 
 
 SUSPECTS = ["Scarlett", "Plum  ", "Peacock", "Green ", "Mustard", "White "]
@@ -230,11 +241,13 @@ deffo_have_dict = initialise_deffo_have_dict(num_players)
 maybe_have_dict = initialise_maybe_have_dict(num_players)
 dont_have_dict = initialise_dont_have_dict(num_players)
 
-undo_list = [[copy.deepcopy(card_locations), copy.deepcopy(deffo_have_dict), copy.deepcopy(maybe_have_dict), copy.deepcopy(dont_have_dict)]]
+undo_list = [[copy.deepcopy(card_locations), copy.deepcopy(deffo_have_dict),
+              copy.deepcopy(maybe_have_dict), copy.deepcopy(dont_have_dict)]]
 
-print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
+print_cards(num_players, total_num_cards, card_enum, deffo_have_dict,
+            maybe_have_dict, dont_have_dict)
 
-signal.signal(signal.SIGINT, ignore_sigint)
+#signal.signal(signal.SIGINT, ignore_sigint)
 
 while True:
     try:
@@ -245,8 +258,11 @@ while True:
                                                deffo_have_dict,           \
                                                maybe_have_dict, dont_have_dict)
         else:
-            deal_with_input(user_input, num_players, card_locations, deffo_have_dict, maybe_have_dict, dont_have_dict, undo_list)
+            deal_with_input(user_input, num_players, card_locations,
+                            deffo_have_dict, maybe_have_dict, dont_have_dict,
+                            undo_list)
 
-        print_cards(num_players, total_num_cards, card_enum, deffo_have_dict, maybe_have_dict, dont_have_dict)
+        print_cards(num_players, total_num_cards, card_enum, deffo_have_dict,
+                    maybe_have_dict, dont_have_dict)
     except EOFError:
         pass
