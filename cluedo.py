@@ -247,12 +247,14 @@ undo_list = [[copy.deepcopy(card_locations), copy.deepcopy(deffo_have_dict),
 print_cards(num_players, total_num_cards, card_enum, deffo_have_dict,
             maybe_have_dict, dont_have_dict)
 
-#signal.signal(signal.SIGINT, ignore_sigint)
+signal.signal(signal.SIGINT, ignore_sigint)
 
 while True:
     try:
         user_input = raw_input("\n > ")
-        if user_input.strip() == "-":
+        if user_input.strip() == "exit":
+            sys.exit(0)
+        elif user_input.strip() == "-":
             (undo_list, card_locations, deffo_have_dict, maybe_have_dict, \
                 dont_have_dict) = revert_state(undo_list, card_locations, \
                                                deffo_have_dict,           \
